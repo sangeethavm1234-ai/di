@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pet Adoption Center</title>
+
+    <style>
+
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #2d3748;
+            min-height: 100vh;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        header{
+            text-align: center;
+            padding: 28px 20px;
+            background: white;
+            border-bottom: 1px solid #e8edf5;
+        }
+
+        header h1{
+            margin: 0;
+            font-size: 30px;
+            color: #3157d5;
+        }
+
+        header p{
+            margin: 8px 0 0;
+            color: #718096;
+            font-size: 14px;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 30px;
+            padding: 35px 20px;
+        }
+
+
+        /* ================= FORM CARD ================= */
+
+        #first{
+            width: 520px;
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid #e7ebf2;
+            box-shadow: 0 8px 30px rgba(45,55,72,0.08);
+        }
+
+        #first h2{
+            margin: 0 0 28px;
+            text-align: center;
+            color: #3157d5;
+            font-size: 22px;
+        }
+
+
+        /* ================= LABEL ================= */
+
+        label{
+            display: block;
+            margin-top: 16px;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+
+        /* ================= INPUTS ================= */
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea{
+
+            width: 100%;
+            padding: 11px 13px;
+
+            border: 1px solid #d8dee9;
+            border-radius: 8px;
+
+            background: #fbfcfe;
+            color: #374151;
+
+            font-size: 14px;
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        select:focus,
+        textarea:focus{
+
+            background: white;
+            border-color: #5275e8;
+
+            box-shadow:
+            0 0 0 3px rgba(82,117,232,0.10);
+        }
+
+
+        textarea{
+            resize: vertical;
+        }
+
+
+        /* ================= RADIO / CHECKBOX ================= */
+
+        .options{
+            margin-top: 8px;
+            padding: 10px 12px;
+
+            background: #f7f9fd;
+            border: 1px solid #edf0f5;
+
+            border-radius: 8px;
+
+            line-height: 28px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"]{
+
+            accent-color: #5275e8;
+            margin-left: 8px;
+        }
+
+
+        /* ================= ERROR ================= */
+
+        h5{
+            margin: 5px 0 8px;
+
+            color: #e05252;
+
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        /*==============PET PREVIEW CARD=============*/
+
+        #petPreview{
+            display: none;
+            text-align: center;
+            margin-top: 14px;
+            padding: 16px;
+            background: #f0f4ff;
+            border: 1px solid #dde5fb;
+            font-size: 42px;
+            animation: fadeIn 0.35s ease;
+        }
+
+        #petPreview span{
+            display: block;
+            font-size: 14px;    
+            color: #3157d5;  
+            font-weight: 600;
+            margin-top: 6px;
+          }
+
+          @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform: translateY(-6px);
+            }
+            to{
+                opacity: 1;
+                transform: translateY(0);
+            }
+          }
+
+
+
+        /* ================= BUTTON ================= */
+
+        button{
+            border: none;
+            cursor: pointer;
+
+            padding: 11px 24px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+        button:hover{
+            transform: translateY(-1px);
+        }
+
+
+        /* Preview */
+
+        .preview{
+
+            display: block;
+            margin: 28px auto 0;
+
+            background: #3157d5;
+            color: white;
+
+            box-shadow:
+            0 5px 12px rgba(49,87,213,0.20);
+        }
+
+        .preview:hover{
+            background: #2648bd;
+        }
+
+
+        /* ================= DISPLAY CARD ================= */
+
+        #disp{
+
+            width: 430px;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            border: 1px solid #e7ebf2;
+
+            box-shadow:
+            0 8px 30px rgba(45,55,72,0.08);
+
+            position: sticky;
+            top: 25px;
+        }
+
+
+        #disp h1{
+
+            margin: 0 0 22px;
+
+            font-size: 23px;
+
+            color: #3157d5;
+
+            padding-bottom: 15px;
+
+            border-bottom: 1px solid #e8edf5;
+        }
+
+
+        #disp h3{
+
+            display: flex;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin: 9px 0;
+
+            padding: 11px 13px;
+
+            background: #f7f9fd;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+
+            font-weight: normal;
+
+            color: #64748b;
+        }
+
+
+        #disp span{
+
+            color: #3157d5;
+
+            font-weight: 600;
+
+            text-align: right;
+        }
+
+
+        /* Submit */
+
+        .submit{
+
+            display: block;
+
+            margin: 25px auto 0;
+
+            background: #35a56b;
+
+            color: white;
+
+            box-shadow:
+            0 5px 12px rgba(53,165,107,0.18);
+        }
+
+        .submit:hover{
+            background: #2d925d;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 1000px){
+
+            .container{
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #first,
+            #disp{
+                width: min(520px, 95%);
+            }
+
+            #disp{
+                position: static;
+            }
+        }
+
+
+        @media(max-width: 500px){
+
+            #first,
+            #disp{
+                padding: 22px;
+            }
+
+            header h1{
+                font-size: 25px;
+            }
+
+            #disp h3{
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            #disp span{
+                text-align: left;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <h1>🐾 Pet Adoption Center</h1>
+
+    <p>
+        Give a loving pet a happy and caring home
+    </p>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+
+    <!-- ================= FORM ================= -->
+
+    <div id="first">
+
+        <form>
+
+            <h2>Adoption Application</h2>
+
+
+            <!-- NAME -->
+
+            <label for="myname">
+                Name
+            </label>
+
+            <input
+                type="text"
+                id="myname"
+                placeholder="Enter your name"
+                oninput="
+                document.getElementById('user').style='display:none'
+                "
+            >
+
+            <h5 id="user" style="display:none;">
+                Please enter your name
+            </h5>
+
+
+
+            <!-- EMAIL -->
+
+            <label for="mail">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="mail"
+                placeholder="Enter your email"
+                oninput="
+                document.getElementById('em').style='display:none'
+                "
+            >
+
+            <h5 id="em" style="display:none;">
+                Please enter your email
+            </h5>
+
+
+
+            <!-- PHONE -->
+
+            <label for="num">
+                Phone Number
+            </label>
+
+            <input
+                type="number"
+                id="num"
+                placeholder="Enter your phone number"
+                oninput="
+                document.getElementById('pho').style='display:none'
+                "
+            >
+
+            <h5 id="pho" style="display:none;">
+                Enter your Phone number
+            </h5>
+
+
+
+            <!-- PET TYPE -->
+
+            <label>
+                Pet Type
+            </label>
+
+            <div class="options">
+
+                <input
+                    type="radio"
+                    name="pet"
+                    value="Dog"
+                    onclick="
+                    showPetPreview('Dog')"
+                >
+                🐶 Dog
+
+
+                <input
+                    type="radio"
+                    name="pet"
+                    value="Cat"
+                    onclick="
+                    showPetPreview('Cat')
+                    "
+                >
+                🐱 Cat
+
+            </div>
+
+            <h5 id="peterror" style="display:none;">
+                Please select a pet type
+            </h5>
+
+            <div id="petPreview"></div>
+
+            <!-- PET PREFERENCE -->
+
+            <label>
+                Pet Preference
+            </label>
+
+            <div class="options">
+
+                <input
+                    type="checkbox"
+                    class="preference"
+                    value="Friendly"
+                    onclick="hideError()"
+                >
+                Friendly
+
+
+                <input
+                    type="checkbox"
+                    class="preference"
+                    value="Trained"
+                    onclick="hideError()"
+                >
+                Trained
+
+
+                <input
+                    type="checkbox"
+                    class="preference"
+                    value="Young"
+                    onclick="hideError()"
+                >
+                Young
+
+            </div>
+
+            <h5 id="preerror" style="display:none;">
+                Please select atleast one preference
+            </h5>
+
+
+
+            <!-- HOME TYPE -->
+
+            <label for="home">
+                Home Type
+            </label>
+
+            <select
+                id="home"
+                onchange="
+                document.getElementById('homeerror').style='display:none'
+                "
+            >
+
+                <option value="">
+                    Select your home type
+                </option>
+
+                <option value="Apartment">
+                    Apartment
+                </option>
+
+                <option value="Independent House">
+                    Independent House
+                </option>
+
+            </select>
+
+            <h5 id="homeerror" style="display:none;">
+                Please select your home type
+            </h5>
+
+
+
+            <!-- ADOPTION DATE -->
+
+            <label for="date">
+                Adoption Date
+            </label>
+
+            <input
+                type="date"
+                id="date"
+                onclick="
+                document.getElementById('dateerror').style='display:none'
+                "
+            >
+
+            <h5 id="dateerror" style="display:none;">
+                Please select adoption date
+            </h5>
+
+
+
+            <!-- PET AGE -->
+
+            <label for="age">
+                Pet Age
+            </label>
+
+            <select
+                id="age"
+                onchange="
+                document.getElementById('ageerror').style='display:none'
+                "
+            >
+
+                <option value="">
+                    Select pet age
+                </option>
+
+                <option value="Puppy / Kitten">
+                    Puppy / Kitten
+                </option>
+
+                <option value="Young">
+                    Young
+                </option>
+
+                <option value="Adult">
+                    Adult
+                </option>
+
+                <option value="Senior">
+                    Senior
+                </option>
+
+            </select>
+
+            <h5 id="ageerror" style="display:none;">
+                Please select pet age
+            </h5>
+
+
+
+            <!-- PET GENDER -->
+
+            <label>
+                Pet Gender
+            </label>
+
+            <div class="options">
+
+                <input
+                    type="radio"
+                    name="gender"
+                    value="Male"
+                    onclick="
+                    document.getElementById('gendererror').style='display:none'
+                    "
+                >
+                Male
+
+
+                <input
+                    type="radio"
+                    name="gender"
+                    value="Female"
+                    onclick="
+                    document.getElementById('gendererror').style='display:none'
+                    "
+                >
+                Female
+
+            </div>
+
+            <h5 id="gendererror" style="display:none;">
+                Please select pet gender
+            </h5>
+
+
+
+            <!-- EXPERIENCE -->
+
+            <label>
+                Previous Pet Experience
+            </label>
+
+            <div class="options">
+
+                <input
+                    type="radio"
+                    name="experience"
+                    value="Yes"
+                    onclick="
+                    document.getElementById('experror').style='display:none'
+                    "
+                >
+                Yes
+
+
+                <input
+                    type="radio"
+                    name="experience"
+                    value="No"
+                    onclick="
+                    document.getElementById('experror').style='display:none'
+                    "
+                >
+                No
+
+            </div>
+
+            <h5 id="experror" style="display:none;">
+                Please select your experience
+            </h5>
+
+
+
+            <!-- REASON -->
+
+            <label for="reason">
+                Reason for Adoption
+            </label>
+
+            <textarea
+                id="reason"
+                rows="3"
+                placeholder="Tell us why you want to adopt..."
+                oninput="
+                document.getElementById('reasonerror').style='display:none'
+                "
+            ></textarea>
+
+            <h5 id="reasonerror" style="display:none;">
+                Please enter your reason for adoption
+            </h5>
+
+
+
+            <!-- PREVIEW BUTTON -->
+
+            <button
+                type="button"
+                class="preview"
+                onclick="display()"
+            >
+                Preview Details
+            </button>
+
+        </form>
+
+    </div>
+
+
+
+    <!-- ================= DISPLAY ================= -->
+
+    <div
+        id="disp"
+        style="display:none;"
+    >
+
+        <h1>
+            🐾 Your Details
+        </h1>
+
+
+        <h3>
+            Name:
+            <span id="name"></span>
+        </h3>
+
+
+        <h3>
+            Email:
+            <span id="mai"></span>
+        </h3>
+
+
+        <h3>
+            Phone Number:
+            <span id="phone"></span>
+        </h3>
+
+
+        <h3>
+            Pet Type:
+            <span id="petty"></span>
+        </h3>
+
+
+        <h3>
+            Pet Preference:
+            <span id="preference"></span>
+        </h3>
+
+
+        <h3>
+            Home Type:
+            <span id="typ"></span>
+        </h3>
+
+
+        <h3>
+            Adoption Date:
+            <span id="adoption"></span>
+        </h3>
+
+
+        <h3>
+            Pet Age:
+            <span id="petage"></span>
+        </h3>
+
+
+        <h3>
+            Pet Gender:
+            <span id="gender"></span>
+        </h3>
+
+
+        <h3>
+            Previous Pet Experience:
+            <span id="experience"></span>
+        </h3>
+
+
+        <h3>
+            Reason for Adoption:
+            <span id="reasontext"></span>
+        </h3>
+
+
+        <button
+    type="button"
+    class="submit"
+    onclick="submitApplication()"
+>
+    ✓ Submit Application
+</button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+/*================SUBMIT APPLICATION=====================*/
+function submitApplication(){
+
+    var name =
+    document.getElementById("myname").value.trim();
+
+    if(name != ""){
+
+        window.location.href =
+        "success.html?name=" + encodeURIComponent(name);
+
+    }
+}
+
+
+/*====================PET PREVIEW CARD==================*/
+
+function showPetPreview(value){
+    document.getElementById("peterror").style="display:none"
+
+    var preview=document.getElementById("petPreview")
+    preview.style.display="block"
+
+    if(value==="Dog"){
+        preview.innerHTML="🐶<span>Great choice! Dogs are loyal &amp; energetic companions.</span>"
+    }
+    else if(value==="Cat"){
+        preview.innerHTML="😺<span>Great choice! Cats are calm &amp; affectionate companions.</span>"
+    }
+}
+
+function display(){
+
+    var valid = true;
+
+
+    /* ================= NAME ================= */
+
+    var element =
+    document.getElementById("myname");
+
+    var data =
+    element.value.trim();
+
+
+    if(data == ""){
+
+        document.getElementById("user").style =
+        "display:block;color:red;font-weight:lighter";
+
+        valid = false;
+
+    }
+    else{
+
+        document.getElementById("user").style =
+        "display:none";
+
+        document.getElementById("name").innerText =
+        data;
+
+    }
+
+
+
+    /* ================= EMAIL ================= */
+
+    var a =
+    document.getElementById("mail");
+
+    var a1 =
+    a.value.trim();
+
+
+    if(a1 == ""){
+
+        document.getElementById("em").style =
+        "display:block;color:red;font-weight:lighter";
+
+        valid = false;
+
+    }
+    else{
+
+        document.getElementById("em").style =
+        "display:none";
+
+        document.getElementById("mai").innerText =
+        a1;
+
+    }
+
+
+
+    /* ================= PHONE ================= */
+
+    var b =
+    document.getElementById("num");
+
+    var b1 =
+    b.value;
+
+
+    if(b1 == ""){
+
+        document.getElementById("pho").style =
+        "display:block;color:red;font-weight:lighter";
+
+        valid = false;
+
+    }
+    else{
+
+        document.getElementById("pho").style =
+        "display:none";
+
+        document.getElementById("phone").innerText =
+        b1;
+
+    }
+
+
+
+    /* ================= PET TYPE ================= */
+
+    var pet =
+    document.querySelector(
+        'input[name="pet"]:checked'
+    );
+
+
+    if(pet == null){
+
+        document.getElementById("peterror").style =
+        "display:block;color:red;font-weight:lighter";
+
+        valid = false;
+
+    }
+    else{
+
+        document.getElementById("peterror").style =
+        "display:none";
+
+        document.getElementById("petty").innerText =
+        pet.value;
+
+    }
+
+
+
+    /* ================= PET PREFERENCE ================= */
+
+    var reference =
+    document.querySelectorAll(
+        ".preference:checked"
+    );
+
+
+    if(reference.length == 0){
+
+        document.getElementById("preerror").style =
+        "display:block;color:red;font-weight:lighter";
+
+        valid = false;
+
+    }
+    else{
+
+        document.getElementById("preerror").style =
+        "display:none";
+
+        var pre = "";
+
+
+        reference.forEach(function(item){
+
+            pre += item.value + " ";
+
+        });
+
+
+        document.getElementById("preference").innerText =
+        pre;
+
+    }
+
+
+
+    /* ================= HOME ================= */
+
+    var home =
+    document.getElementById("home");
+
+    var home1 =
+    home.value;
+
+
+    if(home1 == ""){
+
+        document.getElementById("homeerror").style =
+        "display:block;color:red;font-weight:lighter";
+
+        valid = false;
+
+    }
+    else{
+
+        document.getElementById("homeerror").style =
+        "display:none";
+
+        document.getElementById("typ").innerText =
+        home1;
+
+    }
+
+
+
+    /* ================= DATE ================= */
+
+    var date =
+    document.getElementById("date");
+
+    var date1 =
+    date.value;
+
+
+    if(date1 == ""){
+
+        document.getElementById("dateerror").style =
+        "display:block;color:red;font-weight:lighter";
+
+        valid = false;
+
+    }
+    else{
+
+        document.getElementById("dateerror").style =
+        "display:none";
+
+        document.getElementById("adoption").innerText =
+        date1;
+
+    }
+
+
+
+    /* ================= PET AGE ================= */
+
+    var age =
+    document.getElementById("age");
+
+    var age1 =
+    age.value;
+
+
+    if(age1 == ""){
+
+        document.getElementById("ageerror").style =
+        "display:block;color:red;font-weight:lighter";
+
+        valid = false;
+
+    }
+    else{
+
+        document.getElementById("ageerror").style =
+        "display:none";
+
+        document.getElementById("petage").innerText =
+        age1;
+
+    }
+
+
+
+    /* ================= GENDER ================= */
+
+    var gender =
+    document.querySelector(
+        'input[name="gender"]:checked'
+    );
+
+
+    if(gender == null){
+
+        document.getElementById("gendererror").style =
+        "display:block;color:red;font-weight:lighter"
+        valid=false;
+    }
+    else{
+        document.getElementById("gendererror").style="display:none"
+        document.getElementById("gender").innerText=gender.value
+    }
+
+    /*==================EXPERIENCE======================*/
+    var experience=document.querySelector('input[name="experience"]:checked')
+     
+    if(experience==null){
+        document.getElementById("experror").style="display:block;color:red;font-weight:lighter"
+        valid=false
+    }
+    else{
+        document.getElementById("experror").style="display:none"
+        document.getElementById("experience").innerText=experience.value
+    }
+
+    /*==================REASON================*/
+
+    var reason=document.getElementById("reason")
+    var reason1=reason.value.trim()
+
+    if(reason1==""){
+        document.getElementById("reasonerror").style="display:block;color:red;font-font-weight:lighter"
+        valid=false
+    }
+    else{
+        document.getElementById("reasonerror").style="display:none"
+        document.getElementById("reasontext").innerText=reason1
+    }
+
+    /*=================SHOW DETAILS===================*/
+
+    if(valid){
+        document.getElementById("disp").style.display="block"
+    }
+}
+
+/*======================HIDE PREFERENCE ERROR=======================*/
+
+function hideError(){
+    document.getElementById("preerror").style="display:none"
+}
+
+</script>
+</body>
+</html>

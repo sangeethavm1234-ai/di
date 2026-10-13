@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Application Submitted</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            text-align: center;
+            padding-top: 150px;
+        }
+
+        .success{
+            width: 550px;
+            margin: auto;
+            background: white;
+            padding: 45px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(45,55,72,0.12);
+        }
+
+        h1{
+            color: #35a56b;
+            margin-bottom: 15px;
+        }
+
+        p{
+            color: #64748b;
+            font-size: 17px;
+        }
+
+        .name{
+            color: #3157d5;
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="success">
+
+        <h1>✓ Application Submitted Successfully!</h1>
+
+        <p>
+    Thank you,
+    <span class="name" id="username"></span>!
+</p>
+
+        <p>
+            Your pet adoption application has been received successfully.
+        </p>
+
+        <p>
+            We will contact you soon. 🐾
+        </p>
+
+    </div>
+
+
+    <script>
+
+var username =
+localStorage.getItem("username");
+
+document.getElementById("username").innerText =
+username;
+
+
+</script>
+
+</body>
+
+</html>
